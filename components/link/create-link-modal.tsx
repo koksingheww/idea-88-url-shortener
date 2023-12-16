@@ -1,15 +1,38 @@
-import Image from "next/image";
-import Logo from "../logo";
+import { useFormStatus } from "react-dom";
 
 import { createLink } from "@/lib/actions";
+import Logo from "../logo";
 
 export default async function CreateLinkModal() {
+  function Submit() {
+    const { pending } = useFormStatus();
+
+    const loadingSpinner = <span className="loading loading-spinner"></span>;
+
+    return (
+      <button
+        type="submit"
+        disabled={pending}
+        className="btn btn-block btn-neutral"
+      >
+        {pending && loadingSpinner}
+        Create Link
+      </button>
+    );
+  }
+
+  function handleCloseModal() {
+    const modal = document.getElementById("create-link-modal");
+    if (modal instanceof HTMLDialogElement) {
+      modal.close();
+    }
+  }
   return (
     <dialog id="create-link-modal" className="modal">
       <div className="modal-box w-full max-w-7xl h-full max-y-7xl">
         <div className="scrollbar-hide grid max-h-[90vh] w-full divide-x divide-gray-100 overflow-auto md:grid-cols-2 md:overflow-hidden">
           <button
-            onClick={() => document.getElementById("create-link-modal").close()}
+            onClick={handleCloseModal}
             className="group absolute right-0 top-0 z-20 m-3 hidden rounded-full p-2 text-gray-500 transition-all duration-75 hover:bg-gray-100 focus:outline-none active:bg-gray-200 md:block"
           >
             <svg
@@ -45,10 +68,16 @@ export default async function CreateLinkModal() {
                       </span>
                     </div>
                     <input
+                      id="destination-url"
+                      name="destination-url"
                       type="url"
                       placeholder="https://www.servicerocket.com/"
                       className="input input-bordered w-full max-w-xs"
+                      required
                     />
+                    <p aria-live="polite" className="sr-only">
+                      {/* {state?.message} */}
+                    </p>
                   </label>
                 </div>
                 <div>
@@ -97,9 +126,7 @@ export default async function CreateLinkModal() {
                 </div>
               </div>
               <div className=" z-10 bg-gray-50 px-4 py-8 transition-all md:sticky  md:bottom-0 md:px-16">
-                <button type="submit" className="btn btn-block btn-neutral">
-                  Create Link
-                </button>
+                <Submit />
               </div>
             </form>
           </div>
