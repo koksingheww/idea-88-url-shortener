@@ -1,4 +1,4 @@
-import CreateLinkButton from "./link/create-link-button";
+import CreateLink from "./link/create-link";
 
 export default function SubHeader() {
   return (
@@ -6,7 +6,7 @@ export default function SubHeader() {
       <div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl text-gray-600">My Links</h1>
-          <CreateLinkButton />
+          <CreateLink />
         </div>
       </div>
     </div>
