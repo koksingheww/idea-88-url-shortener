@@ -6,9 +6,9 @@ const prisma = new PrismaClient();
 export async function insertLink() {
   const link = await prisma.url.create({
     data: {
-      originalUrl: "https://google.com",
+      originalUrl: "https://www.prisma.io/docs/orm/reference/prisma-client-reference#create",
       shortUrl: "https://short.com",
-      urlCode: "123",
+      urlCode: "123saasas",
     },
   });
 

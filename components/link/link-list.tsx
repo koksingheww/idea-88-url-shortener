@@ -1,6 +1,9 @@
-import { getAllLinks } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+
+import { getAllLinks } from "@/lib/data";
+import { GOOGLE_FAVICON_URL } from "@/lib/constants";
+import { getApexDomain } from "@/lib/utils";
 
 export default async function LinkList() {
   const allLinks = await getAllLinks();
@@ -13,14 +16,19 @@ export default async function LinkList() {
             <div className="relative flex shrink items-center">
               <Image
                 alt="sst.dev"
-                src="https://www.google.com/s2/favicons?sz=64&domain_url=sst.dev"
+                src={`${GOOGLE_FAVICON_URL}${getApexDomain(originalUrl)}`}
                 width={20}
                 height={20}
                 className="blur-0 h-8 w-8 rounded-full sm:h-10 sm:w-10"
               />
               <div className="ml-2 sm:ml-4">
                 <div className="flex max-w-fit items-center space-x-2">
-                  <Link href={shortUrl}>{shortUrl}</Link>
+                  <Link
+                    className="w-full max-w-[140px] truncate text-sm font-semibold text-blue-800 sm:max-w-[300px] sm:text-base md:max-w-[360px] xl:max-w-[500px]"
+                    href={shortUrl}
+                  >
+                    {shortUrl}
+                  </Link>
                   <button className="group rounded-full bg-gray-100 p-1.5 transition-all duration-75 hover:scale-105 hover:bg-blue-100 active:scale-95">
                     <span className="sr-only">Copy</span>
                     <svg
@@ -41,7 +49,7 @@ export default async function LinkList() {
                   </button>
                 </div>
                 <div className="flex max-w-fit items-center space-x-1">
-                  <div className="md:inline-flex w-4">
+                  {/* <div className="md:inline-flex w-4">
                     <Image
                       alt="Avatar for Sing Kok"
                       src="https://lh3.googleusercontent.com/a/ACg8ocId-jFb6npklo8GToo6QrVRxhWME_RiyTAjwpjxPFj7mpw=s96-c"
@@ -50,10 +58,15 @@ export default async function LinkList() {
                       className="rounded-full border border-gray-300 h-4 w-4"
                     />
                   </div>
-                  <p>•</p>
+                  <p>•</p> */}
                   <p className="whitespace-nowrap text-sm text-gray-500">3h</p>
                   <p>•</p>
-                  <Link href={originalUrl}>{originalUrl}</Link>
+                  <Link
+                    className="max-w-[140px] truncate text-sm font-medium text-gray-700 underline-offset-2 hover:underline sm:max-w-[300px] md:max-w-[360px] xl:max-w-[440px]"
+                    href={originalUrl}
+                  >
+                    {originalUrl}
+                  </Link>
                 </div>
               </div>
             </div>
