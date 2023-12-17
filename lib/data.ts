@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { cache } from "react";
 
 const prisma = new PrismaClient();
 
@@ -13,3 +14,9 @@ export async function insertLink() {
 
   return link;
 }
+
+export const getAllLinks = cache(async () => {
+  const links = await prisma.url.findMany();
+
+  return links;
+});

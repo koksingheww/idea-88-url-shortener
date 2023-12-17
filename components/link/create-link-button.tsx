@@ -1,3 +1,5 @@
+"use client";
+
 export default function CreateLinkButton() {
   function handleOpenModal() {
     const modal = document.getElementById("create-link-modal");

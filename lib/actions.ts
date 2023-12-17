@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-import { insertLink } from "./db";
+import { insertLink } from "./data";
 
 const schema = z.object({
   destinationUrl: z.string().url(),

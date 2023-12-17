@@ -9,9 +9,10 @@ export default function EmptyState() {
       </h2>
       <Image
         alt="No links found"
-        src="https://app.dub.co/_static/illustrations/call-waiting.svg"
-        width={400}
-        height={400}
+        src="/empty-state.svg"
+        width={300}
+        height={300}
+        className="py-24"
       />
       <CreateLinkButton />
       <p className="mt-2 text-sm text-gray-500">or edit your search filters</p>
