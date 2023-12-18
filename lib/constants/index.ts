@@ -1,3 +1,5 @@
+import { customAlphabet } from "nanoid";
+
 export const GOOGLE_FAVICON_URL =
   "https://www.google.com/s2/favicons?sz=64&domain_url=";
 
@@ -22,5 +24,10 @@ export const SPECIAL_APEX_DOMAINS = new Set([
   "fly.dev",
   "web.app",
 ]);
+
+export const nanoid = customAlphabet(
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  7
+); // 7-character random string
 
 export { default as ccTLDs } from "./cctlds";

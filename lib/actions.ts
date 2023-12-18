@@ -7,11 +7,13 @@ import { insertLink } from "./data";
 
 const schema = z.object({
   destinationUrl: z.string().url(),
+  shortLink: z.string().url(),
 });
 
 export async function createLink(formData: FormData) {
   const validatedFields = schema.safeParse({
     destinationUrl: formData.get("destination-url"),
+    shortLink: formData.get("short-link"),
   });
 
   if (!validatedFields.success) {
@@ -21,7 +23,8 @@ export async function createLink(formData: FormData) {
   }
 
   try {
-    const link = await insertLink();
+    const { destinationUrl, shortLink } = validatedFields.data;
+    const link = await insertLink(destinationUrl, shortLink);
     revalidatePath("/");
   } catch (error: any) {
     throw new Error("Failed to create link");

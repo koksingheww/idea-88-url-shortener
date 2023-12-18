@@ -108,8 +108,10 @@ export default async function CreateLinkModal() {
                       </button>
                     </div>
                     <input
+                      id="short-link"
+                      name="short-link"
                       type="url"
-                      placeholder="https://www.servicerocket.com/"
+                      placeholder="servicerocket"
                       className="input input-bordered w-full max-w-xs"
                     />
                   </label>
