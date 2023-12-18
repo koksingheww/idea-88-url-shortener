@@ -27,6 +27,7 @@ export default async function CreateLinkModal() {
       modal.close();
     }
   }
+
   return (
     <dialog id="create-link-modal" className="modal">
       <div className="modal-box w-full max-w-7xl h-full max-y-7xl">
@@ -58,7 +59,11 @@ export default async function CreateLinkModal() {
                 Create a new link
               </h3>
             </div>
-            <form action={createLink} className="grid gap-6 bg-gray-50 pt-8">
+            <form
+              action={createLink}
+              onSubmit={handleCloseModal}
+              className="grid gap-6 bg-gray-50 pt-8"
+            >
               <div className="grid gap-6 px-4 md:px-16">
                 <div>
                   <label className="form-control w-full max-w-xs">

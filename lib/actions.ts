@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
@@ -24,9 +25,10 @@ export async function createLink(formData: FormData) {
 
   try {
     const { destinationUrl, shortLink } = validatedFields.data;
-    const link = await insertLink(destinationUrl, shortLink);
-    revalidatePath("/");
+    await insertLink(destinationUrl, shortLink);
   } catch (error: any) {
     throw new Error("Failed to create link");
   }
+  revalidatePath("/");
+  redirect("/");
 }
