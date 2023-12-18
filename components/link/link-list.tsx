@@ -10,8 +10,11 @@ export default async function LinkList() {
 
   return (
     <>
-      {allLinks.map(({ originalUrl, shortUrl }) => (
-        <li className="border-black relative rounded-lg border-2 bg-white p-3 pr-1 shadow transition-all hover:shadow-md sm:p-4">
+      {allLinks.map(({ originalUrl, shortUrl, urlCode }) => (
+        <li
+          key={urlCode}
+          className="border-black relative rounded-lg border-2 bg-white p-3 pr-1 shadow transition-all hover:shadow-md sm:p-4"
+        >
           <div className="relative flex items-center justify-between">
             <div className="relative flex shrink items-center">
               <Image

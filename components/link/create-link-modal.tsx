@@ -1,6 +1,7 @@
 import { useFormStatus } from "react-dom";
 
 import { createLink } from "@/lib/actions";
+import { getRandomUrlCode } from "@/lib/utils";
 import Logo from "../logo";
 
 export default async function CreateLinkModal() {
