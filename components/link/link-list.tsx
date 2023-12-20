@@ -7,6 +7,7 @@ import { getApexDomain } from "@/lib/utils";
 
 export default async function LinkList() {
   const allLinks = await getAllLinks();
+  // console.log(allLinks);
 
   return (
     <>

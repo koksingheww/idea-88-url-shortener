@@ -1,10 +1,16 @@
 import { useFormStatus } from "react-dom";
+import React, { useState } from "react";
 
 import { createLink } from "@/lib/actions";
 import { getRandomUrlCode } from "@/lib/utils";
 import Logo from "../logo";
 
 export default async function CreateLinkModal() {
+  // const [shortLink, setShortLink] = useState("");
+  // const handleDestinationUrlChange = async () => {
+  //   const urlCode = await getRandomUrlCode();
+  //   setShortLink(urlCode);
+  // };
   function Submit() {
     const { pending } = useFormStatus();
 
@@ -80,6 +86,7 @@ export default async function CreateLinkModal() {
                       placeholder="https://www.servicerocket.com/"
                       className="input input-bordered w-full max-w-xs"
                       required
+                      onChange={handleDestinationUrlChange}
                     />
                     <p aria-live="polite" className="sr-only">
                       {/* {state?.message} */}
@@ -119,6 +126,7 @@ export default async function CreateLinkModal() {
                       type="url"
                       placeholder="servicerocket"
                       className="input input-bordered w-full max-w-xs"
+                      value={shortLink}
                     />
                   </label>
                 </div>
