@@ -30,4 +30,6 @@ export const nanoid = customAlphabet(
   7
 ); // 7-character random string
 
+export const DOMAIN = "http://localhost:3000";
+
 export { default as ccTLDs } from "./cctlds";

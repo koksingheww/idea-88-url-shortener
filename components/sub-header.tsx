@@ -1,6 +1,6 @@
 import CreateLink from "./link/create-link";
 
-export default function SubHeader() {
+export default async function SubHeader() {
   return (
     <div className="flex h-36 items-center border-b border-gray-200 bg-white">
       <div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">

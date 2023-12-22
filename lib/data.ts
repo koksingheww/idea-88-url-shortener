@@ -5,8 +5,11 @@ import { getRandomUrlCode } from "./utils";
 
 const prisma = new PrismaClient();
 
-export async function insertLink(originalUrl: string, shortUrl: string) {
-  const urlCode = await getRandomUrlCode();
+export async function insertLink(
+  originalUrl: string,
+  shortUrl: string,
+  urlCode: string
+) {
   const link = await prisma.url.create({
     data: {
       originalUrl: originalUrl,
