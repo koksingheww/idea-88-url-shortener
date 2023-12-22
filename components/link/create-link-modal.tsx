@@ -33,11 +33,11 @@ export default function CreateLinkModal() {
 
   const generateRandomKey = async () => {
     setGeneratingKey(true);
-    const res = await fetch("api/url-code");
+    const res = await fetch("api/links/random");
     const { data } = await res.json();
     console.log(data);
 
-    setShortLink(`${DOMAIN}/${data}`);
+    setShortLink(`${DOMAIN}/api/links/${data}`);
     setUrlCode(data);
     setGeneratingKey(false);
   };

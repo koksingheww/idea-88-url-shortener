@@ -26,3 +26,13 @@ export const getAllLinks = cache(async () => {
 
   return links;
 });
+
+export async function getOriginalUrlByUrlCode(urlCode: string) {
+  const link = await prisma.url.findUnique({
+    where: {
+      urlCode: urlCode,
+    },
+  });
+
+  return link;
+}
