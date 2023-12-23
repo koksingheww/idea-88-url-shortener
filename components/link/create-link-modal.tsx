@@ -9,7 +9,6 @@ import Logo from "../logo";
 import { DOMAIN } from "@/lib/constants";
 import Random from "../ui/Random";
 import LoadingSpinner from "../ui/LoadingSpinner";
-import { set } from "zod";
 
 export default function CreateLinkModal() {
   const [destinationUrl, setDestinationUrl] = useState("");
