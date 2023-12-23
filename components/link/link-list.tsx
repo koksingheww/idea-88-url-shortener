@@ -11,7 +11,7 @@ export default async function LinkList() {
 
   return (
     <>
-      {allLinks.map(({ originalUrl, shortUrl, urlCode }) => (
+      {allLinks.map(({ originalUrl, shortUrl, urlCode, createdAt }) => (
         <li
           key={urlCode}
           className="border-black relative rounded-lg border-2 bg-white p-3 pr-1 shadow transition-all hover:shadow-md sm:p-4"
@@ -46,7 +46,12 @@ export default async function LinkList() {
                     />
                   </div>
                   <p>•</p> */}
-                  <p className="whitespace-nowrap text-sm text-gray-500">3h</p>
+                  <p className="whitespace-nowrap text-sm text-gray-500">
+                    {new Date(createdAt).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </p>
                   <p>•</p>
                   <Link
                     className="max-w-[140px] truncate text-sm font-medium text-gray-700 underline-offset-2 hover:underline sm:max-w-[300px] md:max-w-[360px] xl:max-w-[440px]"
