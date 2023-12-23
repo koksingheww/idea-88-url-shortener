@@ -19,7 +19,7 @@ model Url {
 
 model UrlAnalytic {
   id      Int @id @default(autoincrement())
-  urlId   Int
+  urlId   Int @unique
   clicked Int
   url     Url @relation(fields: [urlId], references: [id])
 }

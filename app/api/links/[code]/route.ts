@@ -1,5 +1,9 @@
 import { redirect } from "next/navigation";
-import { getOriginalUrlByUrlCode } from "@/lib/data";
+import {
+  getOriginalUrlByUrlCode,
+  updateClickedByUrlId,
+  getClickedByUrlId,
+} from "@/lib/data";
 
 export async function GET(
   request: Request,
@@ -7,5 +11,13 @@ export async function GET(
 ) {
   const { code } = params;
   const link = await getOriginalUrlByUrlCode(code);
+  if (!link) {
+    return redirect("/");
+  }
+
+  const urlAnalytic = await getClickedByUrlId(link.id);
+
+  await updateClickedByUrlId(link.id, urlAnalytic!.clicked + 1);
+
   redirect(`${link!.originalUrl}`);
 }
