@@ -8,13 +8,13 @@ import { insertLink } from "./data";
 
 const schema = z.object({
   destinationUrl: z.string().url(),
-  shortLink: z.string().url(),
+  urlCode: z.string(),
 });
 
-export async function createLink(urlCode: string, formData: FormData) {
+export async function createLink(formData: FormData) {
   const validatedFields = schema.safeParse({
     destinationUrl: formData.get("destination-url"),
-    shortLink: formData.get("short-link"),
+    urlCode: formData.get("url-code"),
   });
 
   if (!validatedFields.success) {
@@ -24,8 +24,8 @@ export async function createLink(urlCode: string, formData: FormData) {
   }
 
   try {
-    const { destinationUrl, shortLink } = validatedFields.data;
-    await insertLink(destinationUrl, shortLink, urlCode);
+    const { destinationUrl, urlCode } = validatedFields.data;
+    await insertLink(destinationUrl, urlCode);
   } catch (error: any) {
     throw new Error("Failed to create link");
   }

@@ -3,17 +3,15 @@ import { cache } from "react";
 
 import { getRandomUrlCode } from "./utils";
 
+import { DOMAIN } from "./constants";
+
 const prisma = new PrismaClient();
 
-export async function insertLink(
-  originalUrl: string,
-  shortUrl: string,
-  urlCode: string
-) {
+export async function insertLink(originalUrl: string, urlCode: string) {
   const link = await prisma.url.create({
     data: {
       originalUrl: originalUrl,
-      shortUrl: shortUrl,
+      shortUrl: `${DOMAIN}/api/links/${urlCode}`,
       urlCode: urlCode,
     },
   });

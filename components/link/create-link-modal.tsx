@@ -13,7 +13,6 @@ import { set } from "zod";
 
 export default function CreateLinkModal() {
   const [destinationUrl, setDestinationUrl] = useState("");
-  const [shortLink, setShortLink] = useState("");
   const [generatingKey, setGeneratingKey] = useState(false);
   const [urlCode, setUrlCode] = useState("");
   function Submit() {
@@ -37,12 +36,10 @@ export default function CreateLinkModal() {
     const { data } = await res.json();
     console.log(data);
 
-    setShortLink(`${DOMAIN}/api/links/${data}`);
     setUrlCode(data);
     setGeneratingKey(false);
   };
 
-  // Update both destinationUrl and shortLink states when the destination URL changes
   const handleDestinationUrlChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -53,11 +50,7 @@ export default function CreateLinkModal() {
     }
   };
 
-  // Update only shortLink state when the short link input changes
-  const handleShortLinkChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setShortLink(event.target.value);
+  const handleUrlCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUrlCode(event.target.value);
   };
 
@@ -67,8 +60,6 @@ export default function CreateLinkModal() {
       modal.close();
     }
   }
-
-  const createLinkWithUrlCode = createLink.bind(null, urlCode);
 
   return (
     <dialog id="create-link-modal" className="modal">
@@ -102,7 +93,7 @@ export default function CreateLinkModal() {
               </h3>
             </div>
             <form
-              action={createLinkWithUrlCode}
+              action={createLink}
               onSubmit={handleCloseModal}
               className="grid gap-6 bg-gray-50 pt-8"
             >
@@ -144,15 +135,23 @@ export default function CreateLinkModal() {
                         <p>{generatingKey ? "Generating" : "Randomize"}</p>
                       </button>
                     </div>
-                    <input
-                      id="short-link"
-                      name="short-link"
-                      type="url"
-                      placeholder="servicerocket"
-                      className="input input-bordered w-full max-w-xs"
-                      value={shortLink}
-                      onChange={handleShortLinkChange}
-                    />
+                    <div className="relative mt-1 flex rounded-md shadow-sm">
+                      <input
+                        type="text"
+                        placeholder={DOMAIN.split("//")[1]}
+                        className="input input-bordered w-full max-w-xs"
+                        disabled
+                      />
+                      <input
+                        id="url-code"
+                        name="url-code"
+                        type="text"
+                        placeholder="servicerocket"
+                        className="input input-bordered w-full max-w-xs"
+                        value={urlCode}
+                        onChange={handleUrlCodeChange}
+                      />
+                    </div>
                   </label>
                 </div>
               </div>
